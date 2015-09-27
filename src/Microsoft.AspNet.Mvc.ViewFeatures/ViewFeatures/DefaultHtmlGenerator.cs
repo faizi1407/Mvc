@@ -802,7 +802,7 @@ namespace Microsoft.AspNet.Mvc.ViewFeatures
             {
                 foreach (var modelError in modelState.Errors)
                 {
-                    var errorText = ValidationHelpers.GetUserErrorMessageOrDefault(modelError, modelState: null);
+                    var errorText = ValidationHelpers.GetUserErrorMessageOrDefault(modelError, modelState);
 
                     if (!string.IsNullOrEmpty(errorText))
                     {

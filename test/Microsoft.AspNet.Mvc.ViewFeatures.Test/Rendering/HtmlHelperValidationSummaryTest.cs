@@ -104,19 +104,23 @@ namespace Microsoft.AspNet.Mvc.Rendering
                 var divWithRootError = "<div class=\"HtmlEncode[[validation-summary-errors]]\"><ul>" +
                     "<li>HtmlEncode[[This is an error for the model root.]]</li>" + Environment.NewLine +
                     "<li>HtmlEncode[[This is another error for the model root.]]</li>" + Environment.NewLine +
+                    "<li>HtmlEncode[[The value 'null' is invalid.]]</li>" + Environment.NewLine +
                     "</ul></div>";
                 var divWithProperty3Error = "<div class=\"HtmlEncode[[validation-summary-errors]]\"><ul>" +
                     "<li>HtmlEncode[[This is an error for Property3.]]</li>" + Environment.NewLine +
+                    "<li>HtmlEncode[[The value 'null' is invalid.]]</li>" + Environment.NewLine +
                     "</ul></div>";
                 var divWithAllErrors = "<div class=\"HtmlEncode[[validation-summary-errors]]\" data-valmsg-summary=\"HtmlEncode[[true]]\"><ul>" +
                     "<li>HtmlEncode[[This is an error for Property3.Property2.]]</li>" + Environment.NewLine +
                     "<li>HtmlEncode[[This is an error for Property3.OrderedProperty3.]]</li>" + Environment.NewLine +
                     "<li>HtmlEncode[[This is an error for Property3.OrderedProperty2.]]</li>" + Environment.NewLine +
                     "<li>HtmlEncode[[This is an error for Property3.]]</li>" + Environment.NewLine +
+                    "<li>HtmlEncode[[The value 'null' is invalid.]]</li>" + Environment.NewLine +
                     "<li>HtmlEncode[[This is an error for Property2.]]</li>" + Environment.NewLine +
                     "<li>HtmlEncode[[This is another error for Property2.]]</li>" + Environment.NewLine +
                     "<li>HtmlEncode[[This is an error for the model root.]]</li>" + Environment.NewLine +
                     "<li>HtmlEncode[[This is another error for the model root.]]</li>" + Environment.NewLine +
+                    "<li>HtmlEncode[[The value 'null' is invalid.]]</li>" + Environment.NewLine +
                     "</ul></div>";
 
                 return new TheoryData<bool, string, string>
@@ -312,6 +316,7 @@ namespace Microsoft.AspNet.Mvc.Rendering
                 "<li>HtmlEncode[[This is yet-another error for OrderedProperty2.]]</li>" + Environment.NewLine +
                 "<li>HtmlEncode[[This is an error for OrderedProperty1.]]</li>" + Environment.NewLine +
                 "<li>HtmlEncode[[This is an error for Property3.]]</li>" + Environment.NewLine +
+                "<li>HtmlEncode[[The value 'null' is invalid.]]</li>" + Environment.NewLine +
                 "<li>HtmlEncode[[This is an error for Property2.]]</li>" + Environment.NewLine +
                 "<li>HtmlEncode[[This is another error for Property2.]]</li>" + Environment.NewLine +
                 "<li>HtmlEncode[[This is an error for Property1.]]</li>" + Environment.NewLine +
@@ -342,21 +347,21 @@ namespace Microsoft.AspNet.Mvc.Rendering
             modelState.AddModelError("Property3.OrderedProperty2", "This is an error for Property3.OrderedProperty2.");
 
             modelState.AddModelError("Property3", "This is an error for Property3.");
-            modelState.AddModelError("Property3", new InvalidCastException("Exception will be ignored."));
+            modelState.AddModelError("Property3", new InvalidCastException("Produces generic error message"));
 
             modelState.AddModelError("Property2", "This is an error for Property2.");
             modelState.AddModelError("Property2", "This is another error for Property2.");
 
             modelState.AddModelError(string.Empty, "This is an error for the model root.");
             modelState.AddModelError(string.Empty, "This is another error for the model root.");
-            modelState.AddModelError(string.Empty, new InvalidOperationException("Another ignored Exception."));
+            modelState.AddModelError(string.Empty, new InvalidOperationException("Produces generic error message"));
         }
 
         // Adds one or more errors for all properties in OrderedModel. But adds errors out of order.
         private void AddOrderedErrors(ModelStateDictionary modelState)
         {
             modelState.AddModelError("Property3", "This is an error for Property3.");
-            modelState.AddModelError("Property3", new InvalidCastException("An ignored Exception."));
+            modelState.AddModelError("Property3", new InvalidCastException("Produces generic error message"));
 
             modelState.AddModelError("Property2", "This is an error for Property2.");
             modelState.AddModelError("Property2", "This is another error for Property2.");
