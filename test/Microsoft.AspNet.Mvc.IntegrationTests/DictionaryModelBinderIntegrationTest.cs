@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Mvc.Abstractions;
 using Microsoft.AspNet.Mvc.ModelBinding;
+using Microsoft.AspNet.Testing.xunit;
 using Xunit;
 
 namespace Microsoft.AspNet.Mvc.IntegrationTests
@@ -307,7 +308,8 @@ namespace Microsoft.AspNet.Mvc.IntegrationTests
             Assert.True(modelState.IsValid);
         }
 
-        [Theory]
+        [ConditionalFact]
+        [FrameworkSkipCondition(RuntimeFrameworks.Mono, SkipReason = "RuntimeHelpers.GetHashCode is throwing on Mono.")]
         [InlineData("?prefix[key0].Id=10")]
         [InlineData("?prefix[0].Key=key0&prefix[0].Value.Id=10")]
         [InlineData("?prefix.index=low&prefix[low].Key=key0&prefix[low].Value.Id=10")]

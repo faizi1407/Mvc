@@ -36,16 +36,16 @@ namespace Microsoft.AspNet.Mvc.ModelBinding.Validation
         /// <summary>
         /// The model prefix associated with <see cref="Model"/>.
         /// </summary>
-        public string Key { get; }
+        public readonly string Key;
 
         /// <summary>
         /// The <see cref="ModelMetadata"/> associated with <see cref="Model"/>.
         /// </summary>
-        public ModelMetadata Metadata { get; }
+        public readonly ModelMetadata Metadata;
 
         /// <summary>
         /// The model object.
         /// </summary>
-        public object Model { get; }
+        public readonly object Model;
     }
 }

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Microsoft.AspNet.Testing;
+using Microsoft.AspNet.Testing.xunit;
 using Moq;
 using Xunit;
 
@@ -327,7 +328,8 @@ namespace Microsoft.AspNet.Mvc.ModelBinding.Validation
             Assert.Contains(ValidationAttributeUtil.GetRegExErrorMessage("hehehe", "Street"), errorMessages);
         }
 
-        [Fact]
+        [ConditionalFact]
+        [FrameworkSkipCondition(RuntimeFrameworks.Mono, SkipReason = "Runtime.GetHashCode is throwing on Mono.")]
         [ReplaceCulture]
         public void Validate_NestedComplexReferenceType_Invalid()
         {
@@ -444,7 +446,8 @@ namespace Microsoft.AspNet.Mvc.ModelBinding.Validation
             Assert.Empty(entry.Errors);
         }
 
-        [Fact]
+        [ConditionalFact]
+        [FrameworkSkipCondition(RuntimeFrameworks.Mono, SkipReason = "Runtime.GetHashCode is throwing on Mono.")]
         [ReplaceCulture]
         public void Validate_ComplexType_CyclesNotFollowed_Invalid()
         {
@@ -549,7 +552,8 @@ namespace Microsoft.AspNet.Mvc.ModelBinding.Validation
             Assert.Empty(entry.Errors);
         }
 
-        [Fact]
+        [ConditionalFact]
+        [FrameworkSkipCondition(RuntimeFrameworks.Mono, SkipReason = "Runtime.GetHashCode is throwing on Mono.")]
         [ReplaceCulture]
         public void Validate_CollectionType_ArrayOfComplexType_Invalid()
         {
@@ -592,7 +596,8 @@ namespace Microsoft.AspNet.Mvc.ModelBinding.Validation
             Assert.Equal(ValidationAttributeUtil.GetRequiredErrorMessage("Profession"), error.ErrorMessage);
         }
 
-        [Fact]
+        [ConditionalFact]
+        [FrameworkSkipCondition(RuntimeFrameworks.Mono, SkipReason = "Runtime.GetHashCode is throwing on Mono.")]
         [ReplaceCulture]
         public void Validate_CollectionType_ListOfComplexType_Invalid()
         {
@@ -728,7 +733,8 @@ namespace Microsoft.AspNet.Mvc.ModelBinding.Validation
             Assert.Empty(entry.Errors);
         }
 
-        [Fact]
+        [ConditionalFact]
+        [FrameworkSkipCondition(RuntimeFrameworks.Mono, SkipReason = "Runtime.GetHashCode is throwing on Mono.")]
         [ReplaceCulture]
         public void Validate_CollectionType_DictionaryOfComplexType_Invalid()
         {
